@@ -9,6 +9,7 @@ build:
 	go build -o ${TARGET_Bin}/${TARGET} src/main.go
 	cp -rf rsa_keys ${TARGET_DIR}/
 	cp -rf conf ${TARGET_DIR}/
+	cp -rf sbin ${TARGET_DIR}/
 	cp README.md ${TARGET_DIR}/
 
 clean:

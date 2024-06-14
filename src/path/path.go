@@ -31,6 +31,12 @@ func getCurrentDirectory() string {
 	return strings.Replace(dir, "\\", pthSep, -1)
 }
 
+// GetConfDir 获取配置文件的目录
+func GetConfDir() string {
+	execDir := getCurrentDirectory()
+	return fmt.Sprintf("%s%s..%sconf", execDir, pthSep, pthSep)
+}
+
 // getKeysDir 获取存放密钥的目录
 func getKeysDir() string {
 	execDir := getCurrentDirectory()
@@ -76,7 +82,10 @@ func LastSyncTime() (time.Time, error) {
 		logger.Sugar().Errorf("os.ReadFile fail, err:%s", err.Error())
 		return time.Time{}, err
 	}
-	lastSync, err := time.Parse(time.RFC3339, string(content))
+	preTime := strings.Split(string(content), "]")
+	realTime := strings.Split(preTime[0], "[")
+
+	lastSync, err := time.Parse(time.RFC3339, realTime[1])
 	if err != nil {
 		logger.Sugar().Errorf("time.Parse fail, err:%s", err.Error())
 		return time.Time{}, err
@@ -86,7 +95,7 @@ func LastSyncTime() (time.Time, error) {
 
 func SetLastSyncTime(lastSync time.Time) {
 	fileName := getLastSyncTimeFilePath()
-	timeStr := lastSync.Format(time.RFC3339)
+	timeStr := "[" + lastSync.Format(time.RFC3339) + "]"
 	if err := os.WriteFile(fileName, []byte(timeStr), 0666); err != nil {
 		logger.Sugar().Errorf("os.WriteFile fail, err:%s", err.Error())
 	}
