@@ -1,0 +1,43 @@
+[Base]
+# WorkDir工作目录,如/Users/xxx/Documents/docSyncKitSpace
+WorkDir="/Users/xxx/Documents/tmp/docSyncKitSpace"
+
+# AllowFileType 允许同步到云端的文件类型，若为"*"，则全部文件都可以同步
+AllowFileType=[".md",".txt"]
+
+# PrivateKeyFile 私钥文件名，从云端同步到本地时需要该参数
+PrivateKeyFile="privatekey_20241311_160608.pem"
+
+# PublicKeyFile 公钥文件名，推送到云端需要该参数
+PublicKeyFile="publickey_20241311_160608.pem"
+
+[Github]
+# Repository 仓库地址,ssh方式
+Repository="git@github.com:coderant163/docSyncKitTest.git"
+
+# Branch 默认分支，本参数暂时没用到
+Branch="main"
+
+# Name git用户名
+Name="coderant"
+
+# Email git邮箱名
+Email="coderant@163.com"
+
+[Log]
+# 日志级别 DEBUG、INFO、WARN、ERROR
+Level="INFO"
+# 日志名称
+FileName="sync.log"
+# 日志大小限制，单位MB
+MaxSize=20
+# 历史日志文件保留天数
+MaxAge=30
+# 最大保留历史日志数量
+MaxBackups=3
+# 历史日志文件压缩标识
+Compress=true
+
+
+
+
