@@ -270,7 +270,7 @@ func ScanDir(srcPath, dstPath string, lastSync time.Time, isEnc bool, allowTypes
 				logger.Sugar().Errorf("keyStore.Encrypt %s fail, err:%s", fileName, err.Error())
 				return nil, err
 			}
-			showFileName = showName(encFileName)
+			showFileName = showName(fileName)
 		}
 
 		if fi.IsDir() { // 目录, 递归遍历
